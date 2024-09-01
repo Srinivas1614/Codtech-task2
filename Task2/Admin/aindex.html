@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Page</title>
+ 
+    <!-- Add any required CSS files here -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+     
+
+          #generateButton {
+            background-color: #3659b2;  
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border: none;
+            transition: 0.3s;
+          }
+        
+          #generateButton:hover {
+            background-color: #4a399c;  
+          }
+
+          table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+</style>
+
+</head>
+<body>
+    <section class=" top-txt ">
+        <div class="head container ">
+            <div class="head-txt ">
+                <p>Welcome To Admin Page.</p>
+            </div>
+            <div class="sing_in_up ">
+                <a href="log.html">SIGN IN / LOGIN</a>
+                 <span class="logout" onclick="logout()">Logout</span> 
+                
+            </div>
+        </div>
+    </section>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <input type="checkbox" name="" id="checkbox">
+            <div class="hamburger-lines">
+                <span class="line line1"></span>
+                <span class="line line2"></span>
+                <span class="line line3"></span>
+            </div>
+             
+            <div class="logo">
+                <h1 style="padding-left: 30px;">SHOPPING KNIGHT</h1>
+            </div>
+        </div>
+    </nav>
+
+    <img src="admin.jpg" height="100%" width="100%">
+
+     <!-- Add product section -->
+     <section class="admin-section">
+        <h2>Add Product</h2>
+
+        <form id="add-product-form">
+            <label for="product-image">Product Image:</label>
+            <input type="file" id="product-image" accept="image/*" required><br><br>
+    
+            <label for="product-name">Product Name:</label>
+            <input type="text" id="product-name" required><br><br>
+    
+            <label for="product-price">Product Price:</label>
+            <input type="number" id="product-price" min="0" step="0.01" required><br><br>
+    
+            <button type="submit">Add Product</button>
+        </form>
+        <!-- Add your form or content for adding a product here -->
+    </section>
+
+    <!-- View orders section -->
+    <section class="admin-section">
+        <h2>View Orders</h2>
+
+        <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Order ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Naina</td>
+                <td>$10.00</td>
+                <td>#123456</td>
+              </tr>
+              <tr>
+                <td>Randy</td>
+                <td>$20.00</td>
+                <td>#234567</td>
+              </tr>
+              <tr>
+                <td>Ram</td>
+                <td>$15.00</td>
+                <td>#345678</td>
+              </tr>
+              <tr>
+                <td>Prakash</td>
+                <td>$25.00</td>
+                <td>#456789</td>
+              </tr>
+              <tr>
+                <td>Bhargav</td>
+                <td>$30.00</td>
+                <td>#567890</td>
+              </tr>
+            </tbody>
+          </table>
+        <!-- Add your content for viewing orders here -->
+    </section>
+
+    <!-- View customers section -->
+    <section class="admin-section">
+        <h2>View Customers</h2>
+
+        <button onclick="generateRandomNumber()">VIEW CUSTOMERS</button>
+         <p id="randomNumber"></p>
+         
+        <!-- Add your content for viewing customers here -->
+    </section>
+
+    <!-- JavaScript for handling form submissions, navigation, and logout -->
+
+ 
+    <script>
+        // Login form submission
+        document.getElementById('login-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Perform login authentication here
+            // If login successful, show the dashboard
+            document.getElementById('login').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+        });
+
+        // Function to logout
+        function logout() {
+            // Perform logout action here
+            // For demonstration, we'll simply reload the page
+            location.reload();
+        }
+
+        function logout() {
+            // Display a pop-up message
+            alert('Successfully logged out');
+          }
+
+
+          //add product option code
+          document.getElementById('add-product-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            // Get form values
+            var productName = document.getElementById('product-name').value;
+            var productPrice = document.getElementById('product-price').value;
+            var productImage = document.getElementById('product-image').files[0];
+            
+            // Perform further actions such as uploading the image and adding the product to the database
+            // For demonstration, we'll just log the values
+            console.log("Product Name: " + productName);
+            console.log("Product Price: " + productPrice);
+            console.log("Product Image: ", productImage);
+            
+            // Clear form fields after submission
+            document.getElementById('add-product-form').reset();
+        });
+
+        const productData = document.getElementById('product-data');
+
+        function generateRandomNumber() {
+            const min = 10000;
+            const max = 100000;
+            const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+            document.getElementById("randomNumber").textContent = "Number of customes using are: " + randomNumber;
+          }
+
+    </script>
+</body>
+</html>
